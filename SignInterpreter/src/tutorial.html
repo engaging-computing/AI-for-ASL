@@ -13,11 +13,14 @@
     <script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
     <script src="tutorial.js"></script>
 </head>
-<body class=" bg-[rgb(255,244,197)] border-2 border-amber-400">
+<body class=" bg-[rgb(255,244,197)] ">
 
     <div class="absolute top-1/2 flex mt-[2vw] w-full">
-        <div id="imageDemo" class="invisible ml-44">
-            <img class="w-64 h-64" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg" alt="image description">
+        <div id="blueModeSign" class="invisible ml-10 mt-10 text-[3vw] text-center text-sky-700">
+               <strong>Blue Mode</strong> 
+        </div>
+        <div id="imageDemo" class="invisible ml-10">
+            <img id="signImage" class="w-64 h-64" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg" alt="image description">
         </div>
         <div id="modelSelectContainer" > 
             
@@ -26,7 +29,7 @@
                 <option value="red">Red 🔴</option>
             </select>
         </div>
-        <div id="promptContainer" class="ml-24 border-[10px] border-solid border-white text-[5vw] bg-amber-50 mt-[2vw] center  text-center align-middle  w-1/2 mb-[3vw] rounded-3xl justify-items-center">
+        <div id="promptContainer" class="border-[10px] border-solid border-white text-[5vw] bg-amber-50 mt-[2vw] center  text-center align-middle  w-1/2 mb-[3vw] rounded-3xl justify-items-center">
             <p id="letterPrompt" class="ml-[2vw]">Can you sign an <strong>'a'</strong>?<br></p>
             <p id="letterPromptCaption" class="text-[2vw] ml-[2vw]">Hint: Try moving your hand around the screen</p>
 
@@ -62,7 +65,17 @@
     </div>
 
     <div id="tutorialPrompt4" class=" invisible absolute mt-[2.5%] p-15 absolute left-0 top-0 h-full w-full text-center ">
-        <h1 class=" h-[20%] text-[3vw] ">First, you'll learn and practice blue mode's letters.</h1>
+        <h1 class=" h-[20%] text-[3vw] ">
+            <span class = "">
+                First, you'll learn and practice 
+            </span>
+            <span class = "text-sky-700">
+                <strong>blue mode's</strong>
+            </span>
+            <span class ="">
+                letters.
+            </span>
+        </h1>
         <div class="... flex items-center justify-center mt-6">
             <img class="w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg" alt="image description">
             <img class="ml-24 w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Sign_language_B.svg" alt="image description">
@@ -76,6 +89,39 @@
             <h1 class=" ml-56 h-[20%] text-[3vw] ">C</h1>
             <h1 class=" ml-56 h-[20%] text-[3vw] ">D</h1>
             <h1 class=" ml-56 h-[20%] text-[3vw] ">L</h1>
+        </div>
+        <button onclick="tutorialNext()" class="mt-20 w-[20%] mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Start</button>
+    </div>
+
+    <div id="goToRedModel" class="invisible top-1/2 rounded-xl w-1/2 absolute mt-32 p-15 text-center">
+        <button onclick="tutorialNext()" class="mt-6 w-1/2 mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Next</button>
+    </div>
+
+    <div id="tutorialPrompt5" class=" invisible absolute mt-[2.5%] p-15 absolute left-0 top-0 h-full w-full text-center ">
+        <h1 class=" h-[20%] text-[3vw] ">
+            <span>
+                Now, you'll learn and practice 
+            </span>
+            <span class = "text-red-600">
+                <strong> red mode's </strong> 
+            </span>
+            <span>
+                letters.
+            </span>
+        </h1>
+        <div class="... flex items-center justify-center mt-6">
+            <img class="w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Sign_language_D.svg" alt="image description">
+            <img class="ml-24 w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Sign_language_E.svg" alt="image description">
+            <img class="ml-24 w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Sign_language_F.svg" alt="image description">
+            <img class="ml-24 w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Sign_language_G.svg" alt="image description">
+            <img class="ml-24 w-40 h-40" src="https://upload.wikimedia.org/wikipedia/commons/1/10/Sign_language_I.svg" alt="image description">
+        </div>
+        <div class="... flex items-center justify-center mt-6">
+            <h1 class=" h-[20%] text-[3vw] ">D</h1>
+            <h1 class=" ml-56 h-[20%] text-[3vw] ">E</h1>
+            <h1 class=" ml-56 h-[20%] text-[3vw] ">F</h1>
+            <h1 class=" ml-56 h-[20%] text-[3vw] ">G</h1>
+            <h1 class=" ml-56 h-[20%] text-[3vw] ">I</h1>
         </div>
         <button onclick="tutorialNext()" class="mt-20 w-[20%] mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Start</button>
     </div>

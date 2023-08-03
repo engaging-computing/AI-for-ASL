@@ -47,9 +47,23 @@ let redConfidence = {
 };
 
 //images for tutorial
-// const img = new Image(100, 200);
-// img.src = "https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg";
-// document.body.appendChild(img);
+const imgA = new Image();
+ imgA.src = "https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg";
+ imgA.id = "imgA";
+ const imgB = new Image();
+ imgB.src = "https://upload.wikimedia.org/wikipedia/commons/1/18/Sign_language_B.svg";
+ imgB.id = "imgB";
+ const imgC = new Image();
+ imgC.src = "https://upload.wikimedia.org/wikipedia/commons/e/e3/Sign_language_C.svg";
+ imgC.id = "imgC";
+ const imgD = new Image();
+ imgD.src = "https://upload.wikimedia.org/wikipedia/commons/0/06/Sign_language_D.svg";
+ imgD.id = "imgD";
+ const imgL = new Image();
+ imgL.src = "https://upload.wikimedia.org/wikipedia/commons/d/d2/Sign_language_L.svg";
+ imgL.id = "imgL";
+
+ let imageLetters = [imgA.src, imgB.src, imgC.src, imgD.src, imgL.src];
 
 
 let letters;
@@ -132,6 +146,7 @@ function tutorialNext() {
             document.getElementById("tutorialPrompt4").style.visibility = "hidden";
             document.getElementById("overlay").style.visibility = "hidden";
             document.getElementById("imageDemo").style.visibility = "visible";
+            document.getElementById("blueModeSign").style.visibility = "visible";
             // console.log("DEBUGGING: SET IS PAUSED TO FALSE HERE WHEN DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             isPaused = false;
             tutorial_counter += 1;
@@ -140,22 +155,33 @@ function tutorialNext() {
         case 5:
             // user has signed all the blue letters and needs to be shown the model select button
             isPaused = true;
+            document.getElementById("blueModeSign").style.visibility = "hidden";
             document.getElementById("imageDemo").style.visibility = "hidden";
             document.getElementById("overlay").style.visibility = "visible";
             document.getElementById("overlay").style.opacity = "85%";
             // make the background mostly opaque
             document.getElementById("modelSelectContainer").style.zIndex = "1";
+            document.getElementById("modelSelectContainer").style.opacity = "0%";
             document.getElementById("promptContainer").style.zIndex = "1";
             document.getElementById("modelSelect").style.zIndex = "1";
             document.getElementById("letterPrompt").innerHTML = "Let's try letters from another model!";
-            document.getElementById("letterPromptCaption").innerHTML = "Click the button under 🤖";
-            document.getElementById("modelSelect").disabled = false;
+            document.getElementById("letterPromptCaption").innerHTML = "Click the button";
+            document.getElementById("goToRedModel").style.visibility = "visible";
+            document.getElementById("modelSelect").disabled = true;
             document.getElementById("modelSelect").style.opacity = "1";
             tutorial_counter += 1;
             // tutorial counter will increase when they click the red model
             break;
         case 6:
+            document.getElementById("tutorialPrompt5").style.visibility = "visible";
+            document.getElementById("goToRedModel").style.visibility = "hidden";
+            document.getElementById("overlay").style.opacity = "100%";
+            document.getElementById("promptContainer").style.visibility = "hidden";
+            tutorial_counter += 1;
+            break;
+        case 7:
             document.getElementById("overlay").style.visibility = "hidden";
+            document.getElementById("tutorialPrompt5").style.visibility = "hidden";
             document.getElementById("letterPromptCaption").innerHTML = "Hint: Try moving your hand around the screen";
             document.getElementById("modelSelect").disabled = true;
             document.getElementById("modelSelect").style.opacity = "0.5";
@@ -167,7 +193,7 @@ function tutorialNext() {
             isPaused = false;
             tutorial_counter += 1;
             break;
-        case 7:
+        case 8:
             document.getElementById("letterPrompt").innerHTML = "You finished free mode!";
             document.getElementById("letterPromptCaption").innerHTML = "When you're ready, try out speed mode and test your ASL skills";
             document.getElementById("speedBtn").disabled = false;
@@ -406,6 +432,7 @@ function confirmLetter() {
 
         } else {
             document.getElementById("letterPrompt").innerHTML = `Can you sign a <strong>'${letters[promptIndex]}'</strong>?<br>`
+            document.getElementById("signImage").src = imageLetters[promptIndex];
         }
     }
     progress = 0;
