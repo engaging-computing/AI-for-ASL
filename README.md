@@ -2,7 +2,7 @@
 
 Demonstrating how AI can recognize American Sign Language hand signs.
 
-## Getting Started
+### Getting Started
 
 To run the sign interpreter, start by cloning the repository with `git clone {repo url}`. From there, navigate to the `src` directory and open the `index.html` file in a modern browser. Alternatively, you can open the file in Visual Studio code and use the "GoLive" extension.
 
