@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="play_through.css"> -->
+    <link rel="stylesheet" href="output.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Sign</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/addons/p5.dom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
+    <script src="red_free_sign.js"></script>
+</head>
+<body class="bg-[rgb(255,244,197)]">
+
+    <div class="absolute top-1/2 flex mt-[2vw] w-full">
+        <div id="modelSelectContainer" > 
+            <h1 class="ml-10 text-[10vw]">🤖</h1>
+            <select onchange="switchModel()" id="modelSelect" class=" p-[1vw] opacity-50 hover:bg-amber-300 bg-amber-200 h-[20%] text-[2vw] text-center justify-center ml-[2vw] rounded-3xl mb-[10%]" style=" opacity: 0;">
+                <option value="blue">Blue</option>
+                <option value="red" selected>Red</option>
+            </select>
+        </div>
+        <div id="promptContainer" class="border-[10px] border-solid border-white text-[5vw] bg-amber-50 mt-[2vw] center  text-center align-middle mr-[10vw] ml-24 w-full mb-[3vw] rounded-3xl justify-items-center">
+            <p id="letterPrompt" class="text-[4vw] ml-[2vw]">Can you sign a <strong>'d'</strong>?<br></p>
+            <p id="letterPromptCaption" class="text-[2vw] ml-[2vw]">Hint: Try moving your hand around the screen</p>
+
+            <!-- <img class=" h-1/2 w-1/2 bg-[url(./static/asl.jpg)]"> -->
+        </div>
+
+        <!-- <p class="text-[5vw] bg-amber-50 mt-[2vw] rounded-3xl">Speed Mode</p> -->
+        <div class="mr-10 w-1/4 center content-center">
+            <button onclick="location.href='index.html'" id="MainBtn" type="button" class="opacity-50 hover:bg-amber-300 bg-amber-200 h-[5vw] w-[10vw] mx-[20%] mt-[40%] center text-black text-xl  border-solid border-amber-300 align-middle rounded-lg  text-center inline-flex items-center justify-center" style=" opacity: 1;">
+                <p class="text-xl">Main Menu</p><br>
+            </button>
+        </div>
+    </div>
+
+</body>
+
+<div class="visible bg-opacity-100 bg-amber-100 absolute left-0 top-0 h-full w-full text-center" id="overlay">
+
+
+    <div id="tutorialPrompt1" class="visible rounded-xl w-[40%] left-1/2 top-1/2 -mt-[20%] -ml-[20%] absolute bg-white border-4 border-solid border-black p-15 text-center">
+         <h1 class="h-[20%] text-[3vw] border-b-2 border-black border-solid">🤖 Welcome to free mode!</h1>
+
+         <p class="text-[2em] mt-2 px-[1em]"> In this mode, you will get to make different ASL characters and have them predicted by an <strong>AI model</strong>. Once you are in a comfortable spot,
+            click on the next button to learn more about the app.</p>
+         <button onclick="tutorialNext()" class="mt-6 w-1/2 mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Next</button>
+    </div>
+
+    <div id="tutorialPrompt2" class="invisible rounded-xl border-b-2 w-[40%] left-1/2 ml-6 mt-6 absolute bg-white border-4 border-solid border-black p-15 text-center">
+        <h1 class="h-[20%] text-[3vw] border-b-2 border-black border-solid">➡️Model input</h1>
+        <p class="text-[2em] mt-2 px-[1em]" > The area on the left is where a live video will be. This shows you what the computer can see while playing the game. 🤖📸</p>
+        <button onclick="tutorialNext()" class="mt-6 w-1/2  mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Next</button>
+    </div>
+
+   <div id="tutorialPrompt3" class=" invisible rounded-xl border-b-2 w-[40%] absolute ml-[5%] mt-[2.5%] bg-white border-4 border-solid border-black p-15 text-center">
+        <h1 class="h-[20%] text-[3vw] border-b-2 border-black border-solid">Model output➡️</h1>
+        <p class="text-[2em] mt-2 px-[1em]"> On the right is where the model prediction will be. This will include <strong>the letter</strong> being predicted and bars showing the models <strong>confidence</strong>. The more 🟩 green the bar, the more ✅confident the prediction.</p>
+        <button onclick="tutorialNext()" class="mt-6 w-1/2 mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Start</button>
+    </div>
+
+    <div id="videoHighlight" class="invisible absolute w-1/2 h-1/2 text-center text-[5em] p-[2em] bg-amber-200 border-4 border-solid">Video</div>
+    <div id="statsHighlight" class="invisible absolute w-1/2 h-1/2 left-1/2 bg-amber-200 p-[1em] border-4 border-solid text-center text-[5em] align-middle ">Model Output</div>
+
+</div>
+<div id="modelSelectHighlight" class="absolute top-1/2 w-[20%] mt-[2vw] border-solid "></div>
+</html>
+
+<!--  -->

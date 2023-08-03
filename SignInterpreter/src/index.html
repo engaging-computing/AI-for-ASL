@@ -1,0 +1,192 @@
+<html>
+    <head>
+    <!-- font-family: playfulKoala;
+    font: 1em playfulKoala; -->
+        <title>Model Selection</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./output.css" rel="stylesheet">
+    </head>
+    <body class="h-screen bg-amber-50">
+
+
+
+<div class="flex flex-row justify-center text-5xl mt-6">Welcome to AI for ASL!</div>
+
+<div class="flex flex-row items-center border-solid border-4 content-center justify-center mt-2"  role="container">
+    <div class="flex justify-center">
+        
+        <!--
+        <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+          <input
+            class="relative float-left mt-0.5 mr-1 -ml-[1.5rem] h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:checked:focus:border-primary"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio1"
+            checked="checked"
+            value="1" />
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
+            for="inlineRadio1"
+            >hi</label
+          >
+        </div>
+        <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+          <input
+            class="relative float-left mt-0.5 mr-1 -ml-[1.5rem] h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:checked:focus:border-primary"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio2"
+            value="2" />
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
+            for="inlineRadio2"
+            >Blue Model</label
+          >
+        </div>
+        <div class="mb-[0.125rem] inline-block min-h-[1.5rem] pl-[1.5rem]">
+          <input
+            class="relative float-left mt-0.5 mr-1 -ml-[1.5rem] h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] disabled:opacity-60 dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:checked:focus:border-primary"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio3"
+            value="3"/>
+          <label
+            class="mt-px inline-block pl-[0.15rem] opacity-50 hover:pointer-events-none"
+            for="inlineRadio3"
+            >Green Model</label
+          >
+        </div>
+        -->
+      </div>
+    <!-- <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-lg w-1/6 h-16 px-5 py-2.5 text-center mr-4 mb-2">Red Model</button>
+    <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-lg w-1/6 h-16 px-5 py-2.5 text-center mr-4 mb-2">Green Model</button>
+    <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-lg px-5 py-2.5 w-1/6 h-16 text-center mr-4 mb-2 ">Blue Model</button>  -->
+
+</div>
+
+            <div class="... flex items-center justify-center text-3xl mt-6 ">Choose a game mode!</div>
+            
+<div class="mt-6 ... flex items-center justify-center text-3xl mx-[20%] text-center">Click on the tutorial to start! In blue and red mode, you will sign different ASL characters and have them predicted by an AI model. In speed mode, you will have 2 minutes to correctly select what model a group of letters belongs to and sign ASL characters for AI to predict. We recommend using a plain background and keeping only your hand in the camera frame!
+</div>
+
+<div class="... flex items-center justify-center mt-10 ">
+
+    <button onclick="location.href='tutorial.html'" type="button" class="text-black text-xl font bg-amber-100 hover:bg-amber-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg p-2.5 text-center inline-flex items-center justify-end">
+        <p>Tutorial</p>
+        <svg aria-hidden="true" class="w-20 h-15" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Icon description</span>
+      </button>
+    <button onclick="location.href='blue_free_sign.html'" type="button" class="text-black text-xl font bg-amber-100 hover:bg-amber-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg p-2.5 text-center inline-flex items-center justify-end ml-10">
+        <p>Blue Mode</p>
+        <svg aria-hidden="true" class="w-20 h-15" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Icon description</span>
+      </button>
+    <button onclick="location.href='red_free_sign.html'" type="button" class="text-black text-xl font bg-amber-100 hover:bg-amber-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg p-2.5 text-center inline-flex items-center justify-end ml-10">
+    <p>Red Mode</p>
+    <svg aria-hidden="true" class="w-20 h-15" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    <span class="sr-only">Icon description</span>
+  </button>
+
+</div>
+
+<div class="... flex items-center justify-center mt-10 ">
+    <button onclick="location.href='speed_sign.html'" type="button" class="text-black text-xl font bg-amber-100 hover:bg-amber-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg p-2.5 text-center inline-flex items-center justify-end">
+        <p>Speed Mode</p>
+        <svg aria-hidden="true" class="w-20 h-15" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Icon description</span>
+      </button>
+    <button onclick="location.href='play_through.html'" type="button" class="text-black text-xl font bg-amber-100 hover:bg-amber-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg p-2.5 text-center inline-flex items-center justify-end ml-10">
+      <p>Play Through</p>
+      <svg aria-hidden="true" class="w-20 h-15" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      <span class="sr-only">Icon description</span>
+    </button>
+</div>
+
+
+  <!-- maybe some kind of pros/cons to the model for students to read. Something like Pro: trained on 500+ images, equal number of images per class -->
+    <!-- Cons: did not study for very long on images, something else -->
+
+
+        <!-- <p>Click the button below to download a CSV file of all users currently in local storage.</p>
+        <button onclick="exportUsers()">Download CSV</button> -->
+    </body>
+    <script>
+        let selected = null;
+        const freeModeBtn = document.getElementById("free_mode_btn");
+        const speedModeBtn = document.getElementById("speed_mode_btn");
+        const radioButtons = document.querySelectorAll('input[name="inlineRadioOptions"]');
+        freeModeBtn.addEventListener("click", () => {
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    selected = radioButton.value;
+                    break;
+                }
+            }
+            localStorage.setItem("gameMode", 1)
+            if (selected) {
+                switch (selected) {
+                    case "1":
+                        localStorage.setItem("modelType", 1)
+                        window.location.href = "free_sign.html";
+                        break;
+                    case "2":
+                        localStorage.setItem("modelType", 2)
+                        window.location.href = "play_through.html";
+                        break;
+                    case "3":
+                        localStorage.setItem("modelType", 3)
+                        window.location.href = "green.html";
+                        break;
+                }
+            }
+        });
+        speedModeBtn.addEventListener("click", () => {
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    selected = radioButton.value;
+                    break;
+                }
+            }
+            localStorage.setItem("gameMode", 2)
+            if (selected) {
+                switch (selected) {
+                    case "1":
+                        localStorage.setItem("modelType", 1)
+                        window.location.href = "speed_sign.html";
+                        break;
+                    case "2":
+                        localStorage.setItem("modelType", 2)
+                        window.location.href = "blue.html";
+                        break;
+                    case "3":
+                        localStorage.setItem("modelType", 2)
+                        window.location.href = "green.html";
+                        break;
+                }
+            }
+        });
+
+
+    </script>
+
+
+    <footer class="bg-amber-100 sticky">
+        <div class="... flex items-center justify-center w-full mx-auto max-w-screen-xl p-2">
+        <ul class="flex flex-wrap items-center mt-3 sm:mt-0">
+            <li>
+                <a href="about_page.html" class="hover:underline md:mr-6 ">About</a>
+            </li>
+            <li>
+                <a href="credits_page.html" class="ml-10 hover:underline md:mr-6">Credits</a>
+            </li>
+            <p class="ml-10">This material is based upon work supported by the National Science Foundation under Grant No. 2112633.</p>
+        </ul>
+        </div>
+    </footer>
+
+    
+</html>
+
+
+
