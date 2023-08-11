@@ -48,20 +48,33 @@ let redConfidence = {
 
 //images for tutorial
 const imgA = new Image();
- imgA.src = "https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg";
+ imgA.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506033803837480/Untitled_design-removebg-preview.png";
  imgA.id = "imgA";
  const imgB = new Image();
- imgB.src = "https://upload.wikimedia.org/wikipedia/commons/1/18/Sign_language_B.svg";
+ imgB.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506102158409738/Untitled_design__1_-removebg-preview.png";
  imgB.id = "imgB";
  const imgC = new Image();
- imgC.src = "https://upload.wikimedia.org/wikipedia/commons/e/e3/Sign_language_C.svg";
+ imgC.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506116943331329/Untitled_design__2_-removebg-preview.png";
  imgC.id = "imgC";
  const imgD = new Image();
- imgD.src = "https://upload.wikimedia.org/wikipedia/commons/0/06/Sign_language_D.svg";
+ imgD.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506132218970163/Untitled_design__3_-removebg-preview.png";
  imgD.id = "imgD";
  const imgL = new Image();
- imgL.src = "https://upload.wikimedia.org/wikipedia/commons/d/d2/Sign_language_L.svg";
+ imgL.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506166683570196/Untitled_design__4_-removebg-preview.png";
  imgL.id = "imgL";
+ const imgE = new Image();
+ imgE.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138509018218897468/Untitled_design__5_-removebg-preview.png";
+ imgE.id = "imgE";
+ const imgF = new Image();
+ imgF.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138509585649516554/Untitled_design__6_-removebg-preview.png";
+ imgF.id = "imgF";
+ const imgG = new Image();
+ imgG.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138510350367608852/Untitled_design__7_-removebg-preview.png";
+ imgG.id = "imgG";
+ const imgI = new Image();
+ imgI.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138511242873557104/Untitled_design__8_-removebg-preview.png";
+ imgI.id = "imgI";
+
 
  let imageLetters = [imgA.src, imgB.src, imgC.src, imgD.src, imgL.src];
 
@@ -124,12 +137,14 @@ function tutorialNext() {
     console.log(tutorial_counter);
     switch(tutorial_counter) {
         case 1:
+            //Model Input + Video Screen
             document.getElementById("tutorialPrompt1").style.visibility = "hidden";
             document.getElementById("tutorialPrompt2").style.visibility = "visible";
             document.getElementById("videoHighlight").style.visibility = "visible";
             tutorial_counter += 1;
             break;
         case 2:
+            //Model output + output screen
             document.getElementById("tutorialPrompt2").style.visibility = "hidden";
             document.getElementById("videoHighlight").style.visibility = "hidden";
             document.getElementById("tutorialPrompt3").style.visibility = "visible";
@@ -137,25 +152,27 @@ function tutorialNext() {
             tutorial_counter += 1;
             break;
         case 3:
+            //"First you'll practice blue mode's letters"
             document.getElementById("tutorialPrompt4").style.visibility = "visible";
             document.getElementById("tutorialPrompt3").style.visibility = "hidden";
             document.getElementById("statsHighlight").style.visibility = "hidden";
             tutorial_counter += 1;
             break;
         case 4:
+            //blue mode game
             document.getElementById("tutorialPrompt4").style.visibility = "hidden";
             document.getElementById("overlay").style.visibility = "hidden";
             document.getElementById("imageDemo").style.visibility = "visible";
-            document.getElementById("blueModeSign").style.visibility = "visible";
+            document.getElementById("ModeSign").style.visibility = "visible";
             // console.log("DEBUGGING: SET IS PAUSED TO FALSE HERE WHEN DONE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             isPaused = false;
             tutorial_counter += 1;
             break;
 
         case 5:
-            // user has signed all the blue letters and needs to be shown the model select button
+            // user has signed all the blue letters and "lets try letters from a different mode"
             isPaused = true;
-            document.getElementById("blueModeSign").style.visibility = "hidden";
+            document.getElementById("ModeSign").style.visibility = "hidden";
             document.getElementById("imageDemo").style.visibility = "hidden";
             document.getElementById("overlay").style.visibility = "visible";
             document.getElementById("overlay").style.opacity = "85%";
@@ -173,6 +190,8 @@ function tutorialNext() {
             // tutorial counter will increase when they click the red model
             break;
         case 6:
+            //Introduces red mode letters
+            document.getElementById("modelSelectContainer").style.zIndex = "0";
             document.getElementById("tutorialPrompt5").style.visibility = "visible";
             document.getElementById("goToRedModel").style.visibility = "hidden";
             document.getElementById("overlay").style.opacity = "100%";
@@ -180,11 +199,18 @@ function tutorialNext() {
             tutorial_counter += 1;
             break;
         case 7:
+            //red mode game
+            imageLetters = [imgD.src, imgE.src, imgF.src, imgG.src, imgI.src];
+            document.getElementById("signImage").src = imageLetters[0];
+            document.getElementById("modeSignText").textContent = "Red Mode";
+            document.getElementById("modeSignText").classList.add("text-red-600");
+            document.getElementById("tutorialPrompt1").style.visibility = "hidden";
+            document.getElementById("imageDemo").style.visibility = "visible";
+            document.getElementById("ModeSign").style.visibility = "visible";
             document.getElementById("overlay").style.visibility = "hidden";
             document.getElementById("tutorialPrompt5").style.visibility = "hidden";
+            document.getElementById("promptContainer").style.visibility = "visible";
             document.getElementById("letterPromptCaption").innerHTML = "Hint: Try moving your hand around the screen";
-            document.getElementById("modelSelect").disabled = true;
-            document.getElementById("modelSelect").style.opacity = "0.5";
             for (i in confidenceArray) {
                 confidenceArray[i] = [];
             }
@@ -194,8 +220,8 @@ function tutorialNext() {
             tutorial_counter += 1;
             break;
         case 8:
-            document.getElementById("letterPrompt").innerHTML = "You finished free mode!";
-            document.getElementById("letterPromptCaption").innerHTML = "When you're ready, try out speed mode and test your ASL skills";
+            document.getElementById("letterPrompt").innerHTML = "You finished tutorial mode!";
+            document.getElementById("letterPromptCaption").innerHTML = "When you're ready, take a look at a guide to the different parts of this application.";
             document.getElementById("speedBtn").disabled = false;
             document.getElementById("speedBtn").style.opacity = "1";
             document.getElementById("speedBtn").innerHTML = "🔓SpeedMode⏩";
@@ -372,7 +398,7 @@ function statistics() {
     }
 
     // has the progress reaches 100 (done) or 0 (choose a new letter)
-    if (progress >= 100 && tutorial_counter < 7) {
+    if (progress >= 100 && tutorial_counter < 10) {
         confirmLetter();
     } else if (progress <= 0) {
         // if it is negative, set it to zero
@@ -391,17 +417,16 @@ function statistics() {
 
 function switchModel() {
     // function activates when the user selects a model
-    let selector = document.getElementById("modelSelect")
+    
     // Am I waiting for them to click red?
-    if (tutorial_counter == 5 && selector.value == "red") {
+    if (tutorial_counter == 7) {
         // indicate that the user can proceed
         // disable the button so they can't change it during this phase
-        document.getElementById("modelSelect").disabled = true;
-        document.getElementById("modelSelect").style.opacity = "0.5";
         document.getElementById("letterPrompt").innerHTML = `Can you sign a <strong>'d'</strong>?<br>`
         // unpause the game
         isPaused = false;
         // update the classifier
+        document.getElementById("modelSelect").value = "red";
         getModel();
         tutorialNext();
     }
@@ -423,7 +448,7 @@ function confirmLetter() {
 
             tutorialNext();
             // no more prompts to give
-            if (tutorial_counter > 6) {
+            if (tutorial_counter > 10) {
                 promptIndex = -1;
             } else {
                 promptIndex = 0;

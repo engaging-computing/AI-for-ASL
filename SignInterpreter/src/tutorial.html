@@ -16,12 +16,16 @@
 <body class=" bg-[rgb(255,244,197)] ">
 
     <div class="absolute top-1/2 flex mt-[2vw] w-full">
-        <div id="blueModeSign" class="invisible ml-10 mt-10 text-[3vw] text-center text-sky-700">
-               <strong>Blue Mode</strong> 
+        <div id="ModeSign" class="invisible ml-10 mt-10 text-[3vw] text-center text-sky-700">
+             
+                <strong id="modeSignText">Blue Mode</strong> 
+              
         </div>
+
         <div id="imageDemo" class="invisible ml-10">
-            <img id="signImage" class="w-64 h-64" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg" alt="image description">
+            <img id="signImage" class="w-64 h-64" src="https://cdn.discordapp.com/attachments/757412788514717766/1138506033803837480/Untitled_design-removebg-preview.png" alt="image description">
         </div>
+
         <div id="modelSelectContainer" > 
             
             <select onchange="switchModel()" id="modelSelect" class=" p-[1vw] opacity-50 hover:bg-amber-300 bg-amber-200 h-[20%] text-[2vw] text-center justify-center ml-[2vw] rounded-3xl mb-[10%]" style=" opacity: 0;">
@@ -123,8 +127,9 @@
             <h1 class=" ml-56 h-[20%] text-[3vw] ">G</h1>
             <h1 class=" ml-56 h-[20%] text-[3vw] ">I</h1>
         </div>
-        <button onclick="tutorialNext()" class="mt-20 w-[20%] mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Start</button>
+        <button onclick="switchModel()" class="mt-20 w-[20%] mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Start</button>
     </div>
+    
 
 
     <div id="videoHighlight" class="invisible absolute w-1/2 h-1/2 text-center text-[5em] p-[2em] bg-amber-200 border-4 border-solid">Video</div>
