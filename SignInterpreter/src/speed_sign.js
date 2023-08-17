@@ -7,8 +7,9 @@ let confidenceArray = {}
 let progress = 0;
 let isPaused = true;
 let framesPerChar = 10;
-let gameTimer = 120;
+let gameTimer = 90;
 let startTimer = 5;
+let textTimer = 1500;
 // Video
 let video;
 let flippedVideo;
@@ -51,7 +52,6 @@ let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com
 let score = 0;
 let incorrectModelAttempts = 0;
 let totalModelAttempts = 0
-
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
@@ -251,7 +251,10 @@ function statistics() {
 // This function needs to loop!!
 function resetGameCycle() {
 	getModel();
-	document.getElementById("wordPrompt").innerHTML = `Select the model that contains the letters in <strong>'${randomCharacters.join("")}'</strong>?<br>`
+	totalModelAttempts++;
+	document.getElementById("extraPrompt").style.visibility = "visible";
+	document.getElementById("extraPrompt").innerHTML = 'Correct!';
+	document.getElementById("wordPrompt").innerHTML = `Select the model that contains the letters in <strong>'${randomCharacters.join("")}'</strong><br>`
 	document.getElementById("modelSelect").selectedIndex = 0;
 	// Check if model is correct. Dont let user sign until it is
 }
@@ -261,22 +264,32 @@ function startClock() {
 }
 
 function confirmLetter() {
+	document.getElementById("extraPrompt").style.visibility = "visible";
 	if (top_character === randomCharacters[promptIndex]) {
 		promptIndex += 1;
-		document.getElementById("wordPrompt").innerHTML = `Correct! Now sign the letter: <strong>'${randomCharacters[promptIndex]}'</strong>?<br>`;
-		document.getElementById("extraPrompt").innerHTML = ''
+		document.getElementById("wordPrompt").innerHTML = `Now sign the letter: <strong>'${randomCharacters[promptIndex]}'</strong><br>`;
+		document.getElementById("extraPrompt").style.color = '#6FCD3D';
+		document.getElementById("extraPrompt").innerHTML = 'Correct!';
+
+		score++;
 	} else {
 		// Incorrect Char
 		document.getElementById("extraPrompt").innerHTML = 'Incorrect Character! Try Again'
 		document.getElementById("extraPrompt").style.color = '#D2042D'
 	}
+
+	setTimeout(() => {
+		document.getElementById("extraPrompt").style.visibility = "hidden";
+
+	  }, textTimer);
+
+
 	progress = 0;
 	// Need new word
 	if (promptIndex == randomCharacters.length) {
 		isPaused = true;
 		promptIndex = 0;
 		document.getElementById("extraPrompt").innerHTML = '';
-		score++;
 		resetGameCycle();
 	}
 }
@@ -300,22 +313,39 @@ function getRandomCharacters() {
 	return randomChars;
 }
 
+
+// FIX ALL THIS ITS A MESS RN
 function checkModel() {
-	totalModelAttempts++;
+	document.getElementById("extraPrompt").style.visibility = "visible";
 	let modelSelector = document.getElementById("modelSelect");
-	if (modelSelector.value == correctModel) {
-		document.getElementById("wordPrompt").innerHTML = `Correct! Now sign the letter: <strong>'${randomCharacters[promptIndex]}'</strong>?<br>`;
-		document.getElementById("extraPrompt").innerHTML = '';
+	if (modelSelector.value == correctModel && document.getElementById("extraPrompt").innerHTML == "You selected the incorrect model. Please try again.") {
+		document.getElementById("wordPrompt").innerHTML = `Now sign the letter: <strong>'${randomCharacters[promptIndex]}'</strong><br>`;
+		document.getElementById("extraPrompt").style.color = '#6FCD3D';
+		document.getElementById("extraPrompt").innerHTML = 'Correct!';
 		isModelCorrect = true;
 		isPaused = false;
-	} else {
+	} else if (modelSelector.value == correctModel){
+		document.getElementById("wordPrompt").innerHTML = `Now sign the letter: <strong>'${randomCharacters[promptIndex]}'</strong><br>`;
+		document.getElementById("extraPrompt").style.color = '#6FCD3D';
+		document.getElementById("extraPrompt").innerHTML = 'Correct!';
+		isModelCorrect = true;
+		isPaused = false;
+		score++;
+	}
+	else {
 		incorrectModelAttempts++;
 		isPaused = true;
-		document.getElementById("extraPrompt").innerHTML = "You selected the incorrect model! Look carefully at the models and try again!";
+		document.getElementById("extraPrompt").style.color = '#D2042D';
+		document.getElementById("extraPrompt").innerHTML = "You selected the incorrect model. Please try again.";
 	}
+
+	setTimeout(() => {
+		document.getElementById("extraPrompt").style.visibility = "hidden";
+
+	  }, textTimer);
 }
 
-function updateTimer() {
+function updateTimer() { 
 	if (gameTimer) {
 		gameTimer -= 1;
 		document.getElementById("roundTimer").innerHTML = `Time Left: ${gameTimer}`
