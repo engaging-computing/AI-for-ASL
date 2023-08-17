@@ -10,6 +10,8 @@ let upper_threshhold = 0.7;
 let lower_threshhold = 0.05;
 let confidenceArray = {};
 
+let imageIndex = 0;
+
 let progress = 0;
 let isPaused = true;
 let framesPerChar = 10;
@@ -77,6 +79,28 @@ const imgA = new Image();
 
 
  let imageLetters = [imgA.src, imgB.src, imgC.src, imgD.src, imgL.src];
+
+ //images for last page of tutorial
+ const img0 = new Image();
+ img0.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473770754805871/image.png";
+ img0.id = "img0";
+ const img1 = new Image();
+ img1.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473729189249186/image.png";
+ img1.id = "img1";
+ const img2 = new Image();
+ img2.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473665066746027/image.png";
+ img2.id = "img2";
+ const img3 = new Image();
+ img3.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473537299845211/image.png";
+ img3.id = "img3";
+ const img4 = new Image();
+ img4.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473476700557412/image.png";
+ img4.id = "img4";
+ const img5 = new Image();
+ img5.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473405787443381/image.png";
+ img5.id = "img5";
+
+ let imageTutorial = [img0.src, img1.src, img2.src, img3.src, img4.src, img5.src];
 
 
 let letters;
@@ -220,12 +244,83 @@ function tutorialNext() {
             tutorial_counter += 1;
             break;
         case 8:
-            document.getElementById("letterPrompt").innerHTML = "You finished tutorial mode!";
+            //done with red mode page
+            document.getElementById("goToTutorial").style.visibility = "visible";
+            document.getElementById("letterPrompt").innerHTML = "You finished!";
             document.getElementById("letterPromptCaption").innerHTML = "When you're ready, take a look at a guide to the different parts of this application.";
-            document.getElementById("speedBtn").disabled = false;
-            document.getElementById("speedBtn").style.opacity = "1";
-            document.getElementById("speedBtn").innerHTML = "🔓SpeedMode⏩";
+            document.getElementById("imageDemo").style.visibility = "hidden";
+            document.getElementById("ModeSign").style.visibility = "hidden";
+            // document.getElementById("speedBtn").disabled = false;
+            // document.getElementById("speedBtn").style.opacity = "1";
+            // document.getElementById("speedBtn").innerHTML = "🔓SpeedMode⏩";
+            isPaused = true;
             tutorial_counter += 1;
+            break;
+        case 9:
+            //tutorial of application
+            document.getElementById("overlay").style.visibility = "visible";
+            document.getElementById("goToTutorial").style.visibility = "hidden";
+            document.getElementById("promptContainer").style.visibility = "hidden";
+            document.getElementById("tutorialPrompt6").style.visibility = "visible";
+            document.getElementById("tutorialDescription").style.visibility = "hidden";
+            document.getElementById("blueModeDescription").style.visibility = "hidden";
+            document.getElementById("redModeDescription").style.visibility = "hidden";
+            document.getElementById("speedModeDescription").style.visibility = "hidden";
+            document.getElementById("playThroughDescription").style.visibility = "hidden";
+            document.getElementById("initialImage").style.visibility = "visible";
+            document.getElementById("tutorialButton").style.visibility = "visible";
+            imageIndex++;
+            tutorial_counter += 1;
+            break;
+        case 10:
+            //tutorial
+            document.getElementById("tutorialDescription").style.visibility = "visible";
+            document.getElementById("initialImage").src = imageTutorial[imageIndex];
+            imageIndex++;
+            tutorial_counter += 1;
+            break;
+        case 11:
+            // blue mode
+            document.getElementById("tutorialDescription").style.visibility = "hidden";
+            document.getElementById("blueModeDescription").style.visibility = "visible";
+            document.getElementById("initialImage").src = imageTutorial[imageIndex];
+            imageIndex++;
+            tutorial_counter += 1;
+            break;
+        case 12: 
+        // red mode
+            document.getElementById("blueModeDescription").style.visibility = "hidden";
+            document.getElementById("redModeDescription").style.visibility = "visible";
+            document.getElementById("initialImage").src = imageTutorial[imageIndex];
+            imageIndex++;
+            tutorial_counter += 1;
+            break;
+        case 13:
+            // speed mode
+            document.getElementById("redModeDescription").style.visibility = "hidden";
+            document.getElementById("speedModeDescription").style.visibility = "visible";
+            document.getElementById("initialImage").src = imageTutorial[imageIndex];
+            imageIndex++;
+            tutorial_counter += 1;
+            break;
+        case 14:
+            // play through
+            document.getElementById("speedModeDescription").style.visibility = "hidden";
+            document.getElementById("playThroughDescription").style.visibility = "visible";
+            document.getElementById("initialImage").src = imageTutorial[imageIndex];
+            // imageIndex++;
+            tutorial_counter += 1;
+            break;
+        case 15:
+            // last page, go to main menu
+            document.getElementById("playThroughDescription").style.visibility = "hidden";
+            document.getElementById("initialImage").style.visibility = "hidden";
+            document.getElementById("tutorialPrompt6").style.visibility = "hidden";
+            document.getElementById("tutorialPrompt7").style.visibility = "visible";
+            document.getElementById("tutorialButton").style.visibility = "hidden";
+            document.getElementById("lastButton").style.visibility = "visible";
+            break;
+
     }
 }
 

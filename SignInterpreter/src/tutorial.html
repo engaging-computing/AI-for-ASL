@@ -129,7 +129,34 @@
         </div>
         <button onclick="switchModel()" class="mt-20 w-[20%] mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Start</button>
     </div>
+
+    <div id="goToTutorial" class="invisible top-1/2 rounded-xl w-1/2 absolute mt-32 p-15 text-center">
+        <button onclick="tutorialNext()" class="mt-6 w-1/2 mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Next</button>
+    </div>
     
+    <div id="tutorialPrompt6" class="invisible absolute mt-6 p-15 text-center">
+        <h1 class=" h-[20%] text-[2vw] ">On the main menu, you'll see these five game modes.</h1>
+        
+        <div class="... flex items-center justify-center mt-10">
+            <h1 id="tutorialDescription" class=" invisible ml-6 w-1/4 "> <strong>Tutorial: </strong>This is the mode you are in now! It teaches you the letters and explains the features of this application.</h1>
+            <h1 id="blueModeDescription" class=" invisible w-1/4 ml-32 mr-32"><strong class="text-sky-700">Blue Mode: </strong>You can practice signing blue mode letters here.</h1>
+            <h1 id="redModeDescription" class=" invisible w-1/4 ml-32 mr-32"><strong class="text-red-600">Red Mode: </strong>You can practice signing red mode letters here.</h1>
+        </div>
+        <div class="invisible -ml-[5%] left-1/10 w-1/6 mt-60 absolute">
+            <h1 id="speedModeDescription" class=""><strong>Speed Mode: </strong>Earn points by correctly signing letters and identifying which color model they belong to. You have 90 seconds!</h1>
+        </div>
+        <div class="invisible -mr-[5%] right-1/10 w-1/6 mt-60 absolute">
+            <h1 id="playThroughDescription" class=""><strong>Play Through: </strong>Play through the game starting with signing all letters in Free mode. Once completed, you'll unlock Speed mode.</h1>
+        </div>
+    
+        <img id="initialImage" class="invisible w-1/2 h-1/2 ml-64 mt-10" src="https://cdn.discordapp.com/attachments/757412788514717766/1141473770754805871/image.png" alt="image description">
+        <button id="tutorialButton" onclick="tutorialNext()" class=" invisible mt-10 w-1/4  mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Next</button>
+    </div>
+
+    <div id="tutorialPrompt7" class="ml-56 invisible absolute mt-10 p-15 text-center">
+        <h1 class=" h-[20%] text-[2vw] ">When you're ready, click on the button to try out these modes on the main menu!</h1>
+        <button onclick="location.href='index.html'" id="lastButton" class=" invisible mt-10 w-1/4  mb-[1vw] right-0 text-[2em] bg-[rgb(76,175,80)] hover:bg-[#247527] text-white font-bold py-2 px-4 rounded-2xl">Main Menu</button>
+    </div>
 
 
     <div id="videoHighlight" class="invisible absolute w-1/2 h-1/2 text-center text-[5em] p-[2em] bg-amber-200 border-4 border-solid">Video</div>
