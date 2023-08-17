@@ -9,7 +9,7 @@ let isPaused = true;
 let framesPerChar = 10;
 let gameTimer = 90;
 let startTimer = 5;
-let textTimer = 1500;
+let textTimer = 2000;
 // Video
 let video;
 let flippedVideo;
@@ -313,8 +313,6 @@ function getRandomCharacters() {
 	return randomChars;
 }
 
-
-// FIX ALL THIS ITS A MESS RN
 function checkModel() {
 	document.getElementById("extraPrompt").style.visibility = "visible";
 	let modelSelector = document.getElementById("modelSelect");
