@@ -576,6 +576,7 @@ video {
 .w-40 {
   width: 10rem;
 }
+
 .h-40 {
   height: 10rem;
 }
@@ -683,6 +684,10 @@ video {
   float: left;
 }
 
+.float-right {
+  float: right;
+}
+
 .mr-auto{
   margin-right: auto;
 }
@@ -757,6 +762,10 @@ video {
 
 .mb-\[3vw\] {
   margin-bottom: 3vw;
+}
+
+.ml-120 {
+  margin-left: 36rem;
 }
 
 .ml-118 {
@@ -965,6 +974,10 @@ video {
 
 .w-24 {
   width: 6rem;
+}
+
+.w-40 {
+  width: 8rem;
 }
 
 .w-4\/5 {
