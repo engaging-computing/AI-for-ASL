@@ -47,31 +47,31 @@ let redConfidence = {
 
 //images for tutorial
 const imgA = new Image();
-imgA.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506033803837480/Untitled_design-removebg-preview.png";
+imgA.src = "./images/imgA.png";
 imgA.id = "imgA";
 const imgB = new Image();
-imgB.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506102158409738/Untitled_design__1_-removebg-preview.png";
+imgB.src = "./images/imgB.png";
 imgB.id = "imgB";
 const imgC = new Image();
-imgC.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506116943331329/Untitled_design__2_-removebg-preview.png";
+imgC.src = "./images/imgC.png";
 imgC.id = "imgC";
 const imgD = new Image();
-imgD.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506132218970163/Untitled_design__3_-removebg-preview.png";
+imgD.src = "./images/imgD.png";
 imgD.id = "imgD";
 const imgL = new Image();
-imgL.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506166683570196/Untitled_design__4_-removebg-preview.png";
+imgL.src = "./images/imgL.png";
 imgL.id = "imgL";
 const imgE = new Image();
-imgE.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138509018218897468/Untitled_design__5_-removebg-preview.png";
+imgE.src = "./images/imgE.png";
 imgE.id = "imgE";
 const imgF = new Image();
-imgF.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138509585649516554/Untitled_design__6_-removebg-preview.png";
+imgF.src = "./images/imgF.png";
 imgF.id = "imgF";
 const imgG = new Image();
-imgG.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138510350367608852/Untitled_design__7_-removebg-preview.png";
+imgG.src = "./images/imgG.png";
 imgG.id = "imgG";
 const imgI = new Image();
-imgI.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138511242873557104/Untitled_design__8_-removebg-preview.png";
+imgI.src = "./images/imgI.png";
 imgI.id = "imgI";
 
 
@@ -79,22 +79,22 @@ let imageLetters = [imgA.src, imgB.src, imgC.src, imgD.src, imgL.src];
 
 //images for last page of tutorial
 const img0 = new Image();
-img0.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473770754805871/image.png";
+img0.src = "./images/img0.png";
 img0.id = "img0";
 const img1 = new Image();
-img1.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473729189249186/image.png";
+img1.src = "./images/img1.png";
 img1.id = "img1";
 const img2 = new Image();
-img2.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141735326239424532/image.png";
+img2.src = "./images/img2.png";
 img2.id = "img2";
 const img3 = new Image();
-img3.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473537299845211/image.png";
+img3.src = "./images/img3.png";
 img3.id = "img3";
 const img4 = new Image();
-img4.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473476700557412/image.png";
+img4.src = "./images/img4.png";
 img4.id = "img4";
 const img5 = new Image();
-img5.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473405787443381/image.png";
+img5.src = "./images/img5.png";
 img5.id = "img5";
 
 let imageTutorial = [img0.src, img1.src, img2.src, img3.src, img4.src, img5.src];
@@ -102,10 +102,12 @@ let imageTutorial = [img0.src, img1.src, img2.src, img3.src, img4.src, img5.src]
 
 let letters;
 // this tracks where we are in the letters so the prompts cover them all
+// James and Andrew's OG blue model: https://teachablemachine.withgoogle.com/models/0_xhWMn4A/
+// James and Andrew's OG red model: https://teachablemachine.withgoogle.com/models/oalxd3LWt/
 let promptIndex = 0;
 let model;
-let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/0_xhWMn4A/' + 'model.json');
-let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oalxd3LWt/' + 'model.json');
+let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/AINQAXtTs/' + 'model.json');
+let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/7CoeRTZh8/' + 'model.json');
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
 // Load the model first
