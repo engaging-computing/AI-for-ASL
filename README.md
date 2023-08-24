@@ -11,7 +11,7 @@ We created two models, *Blue* and *Red*, that are each trained to recognize five
 
 We hope to provide a practical (and fun) introduction to artificial intelligence and machine learning. Please feel free to incorporate our app in your AI and ML curriculum!
 
-James Dimino, Andrew Farrell, Angela Wang, Ryan Maradiaga, and Fred Martin
+Originally created by James Dimino and Andrew Farrell, extended by Angela Wang and Ryan Maradiaga, coordinated by Fred Martin.
 
 ### Getting Started
 
