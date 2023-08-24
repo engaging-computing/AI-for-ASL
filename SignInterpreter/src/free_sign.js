@@ -1,6 +1,3 @@
-// Due to the draw function driving the program cycles, it is necessary to use
-// many global variables so
-
 // Classifier Variable
 let classifier;
 // Model URL
@@ -47,12 +44,11 @@ let redConfidence = {
 };
 
 let letters;
-// let letters = blueLetters;
 // this tracks where we are in the letters so the prompts cover them all
 let promptIndex = 0;
 let model;
-let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/0_xhWMn4A/'+ 'model.json');
-let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oalxd3LWt/'+ 'model.json');
+let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/AINQAXtTs/' + 'model.json');
+let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/7CoeRTZh8/' + 'model.json');
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
 // Load the model first
@@ -66,15 +62,15 @@ function preload() {
 function getModel() {
     model = document.getElementById("modelSelect").value;
     if (model == "blue") {
-      // blue
-      classifier = blueClassifier;
-      letters = blueLetters;
-      confidenceArray = blueConfidence;
+        // blue
+        classifier = blueClassifier;
+        letters = blueLetters;
+        confidenceArray = blueConfidence;
     } else {
-      // red
-      classifier = redClassifier;
-      letters = redLetters;
-      confidenceArray = redConfidence;
+        // red
+        classifier = redClassifier;
+        letters = redLetters;
+        confidenceArray = redConfidence;
     }
 
     for (i in confidenceArray) {
@@ -83,7 +79,7 @@ function getModel() {
 
     predictions = null;
     // reset any predictions
-  }
+}
 
 function pause_play() {
     textSize(120);
@@ -102,7 +98,7 @@ function pause_play() {
 // used to control the movement from different tutorial phases
 function tutorialNext() {
     console.log(tutorial_counter);
-    switch(tutorial_counter) {
+    switch (tutorial_counter) {
         case 1:
             document.getElementById("tutorialPrompt1").style.visibility = "hidden";
             document.getElementById("tutorialPrompt2").style.visibility = "visible";
@@ -165,7 +161,6 @@ function tutorialNext() {
 }
 
 function setup() {
-
     createCanvas(windowWidth, windowHeight / 2);
     background('rgb(255, 235, 145)')
     koalafont = loadFont("fonts/playfulKoala.otf");
@@ -175,19 +170,16 @@ function setup() {
     video = createCapture(VIDEO);
 
     // draw a white rectangle where the video will be
-    rect(0, 0, windowWidth/2, windowHeight/2);
+    rect(0, 0, windowWidth / 2, windowHeight / 2);
 
     // set video settings so image is flipped
-    video.size(windowWidth/2, windowHeight/2);
+    video.size(windowWidth / 2, windowHeight / 2);
     video.hide();
     flippedVideo = ml5.flipImage(video);
 
     // Change the frame rate as necessary depending on computer preformance
     frameRate(60);
     rectMode(CORNERS);
-    // textFont(loadFont('fonts/playfulKoala.ttf'));
-    // uncomment this after testing
-
 }
 
 function draw() {
@@ -225,31 +217,7 @@ function gotResult(error, results) {
     }
     // The results are in an array ordered by confidence
     predictions = results;
-    // label = results[0].label;
-    // if (label != "-" && !isPaused) {
-    //   progress += (1 / framesPerChar) * 100;
-    //   confidenceArray.push(label);
-    //   if (confidenceArray.length >= framesPerChar) {
-    //     word += highestOccurence(confidenceArray);
-    //     confidenceArray = [];
-    //     progress = 0;
-    //   }
-    // }
 }
-
-// function highestOccurence(arr){
-//     return arr.sort((a, b) =>
-//           arr.filter(x => x === a).length
-//         - arr.filter(x => x === b).length
-//     ).pop();
-// }
-
-// function deleteChar() {
-//   top_character = top_character.slice(0, -1);
-//   progress = 0;
-// }
-
-
 
 function tutorial() {
     console.log("Ran the tutorial.");
@@ -262,8 +230,6 @@ function statistics() {
     }
 
     // draw a box to hold the predictions
-    // noFill();
-    // rect(windowWidth, 0, windowWidth * 0.5, windowHeight * 0.5 )
     textAlign(CENTER);
     let top_character_size = 160;
     textSize(top_character_size);
@@ -275,8 +241,8 @@ function statistics() {
         stroke(0, 0, 0);
         if (progress) {
             noFill();
-            stroke(lerpColor(color(255,0,0), color(0,255,0), (progress / 100.0)));
-            arc(width * 0.75, height * 0.33, top_character_size*  1.5, top_character_size * 1.5, 0, 2 * PI * (progress / 100.0))
+            stroke(lerpColor(color(255, 0, 0), color(0, 255, 0), (progress / 100.0)));
+            arc(width * 0.75, height * 0.33, top_character_size * 1.5, top_character_size * 1.5, 0, 2 * PI * (progress / 100.0))
         }
         strokeWeight(1);
         stroke(0, 0, 0);
@@ -295,7 +261,7 @@ function statistics() {
 
         if (entry.label != '-') {
             // Interpolate from red to green using confidence
-            fill(lerpColor(color(255,0,0), color(0,255,0), entry.confidence));
+            fill(lerpColor(color(255, 0, 0), color(0, 255, 0), entry.confidence));
             // Draw the rectangle
             rect(startingX,
                 startingY - (entry.confidence * maxBarHeight),
@@ -304,10 +270,10 @@ function statistics() {
                 5, 5, 5, 5
             )
             // Write the labels under their respective bars
-            fill(0,0,0);
+            fill(0, 0, 0);
             textSize(30);
             textAlign(CENTER);
-            text(entry.label,startingX + barWidth / 2, startingY + 30);
+            text(entry.label, startingX + barWidth / 2, startingY + 30);
         }
 
         // keep track of the past framesPerChar confidences
@@ -342,7 +308,7 @@ function statistics() {
         // find char with highest avg ( excluding the background )
         for (letter in confidenceArray) {
             // && letter != '-'
-            if (average(confidenceArray[letter]) > highest_avg ) {
+            if (average(confidenceArray[letter]) > highest_avg) {
                 highest_avg = average(confidenceArray[letter]);
                 top_character = letter;
             }
@@ -369,8 +335,6 @@ function switchModel() {
 }
 function confirmLetter() {
     // confirm the letter
-    //console.log(`confirming letter ${top_character}`);
-    /////////////////////////////////////////////////////////////////////////////////////////
     if (top_character === letters[promptIndex]) {
         // show the correct icon
 
@@ -379,9 +343,6 @@ function confirmLetter() {
         // entry needs to be there since it's classifiable and it used in the
         // statistics function
         if (promptIndex >= letters.length - 1) {
-
-            //
-
             tutorialNext();
             // no more prompts to give
             if (tutorial_counter > 6) {

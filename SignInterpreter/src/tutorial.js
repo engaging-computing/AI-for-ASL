@@ -1,6 +1,3 @@
-// Due to the draw function driving the program cycles, it is necessary to use
-// many global variables so
-
 // Classifier Variable
 let classifier;
 // Model URL
@@ -50,66 +47,67 @@ let redConfidence = {
 
 //images for tutorial
 const imgA = new Image();
- imgA.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506033803837480/Untitled_design-removebg-preview.png";
- imgA.id = "imgA";
- const imgB = new Image();
- imgB.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506102158409738/Untitled_design__1_-removebg-preview.png";
- imgB.id = "imgB";
- const imgC = new Image();
- imgC.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506116943331329/Untitled_design__2_-removebg-preview.png";
- imgC.id = "imgC";
- const imgD = new Image();
- imgD.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506132218970163/Untitled_design__3_-removebg-preview.png";
- imgD.id = "imgD";
- const imgL = new Image();
- imgL.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138506166683570196/Untitled_design__4_-removebg-preview.png";
- imgL.id = "imgL";
- const imgE = new Image();
- imgE.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138509018218897468/Untitled_design__5_-removebg-preview.png";
- imgE.id = "imgE";
- const imgF = new Image();
- imgF.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138509585649516554/Untitled_design__6_-removebg-preview.png";
- imgF.id = "imgF";
- const imgG = new Image();
- imgG.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138510350367608852/Untitled_design__7_-removebg-preview.png";
- imgG.id = "imgG";
- const imgI = new Image();
- imgI.src = "https://cdn.discordapp.com/attachments/757412788514717766/1138511242873557104/Untitled_design__8_-removebg-preview.png";
- imgI.id = "imgI";
+imgA.src = "./images/imgA.png";
+imgA.id = "imgA";
+const imgB = new Image();
+imgB.src = "./images/imgB.png";
+imgB.id = "imgB";
+const imgC = new Image();
+imgC.src = "./images/imgC.png";
+imgC.id = "imgC";
+const imgD = new Image();
+imgD.src = "./images/imgD.png";
+imgD.id = "imgD";
+const imgL = new Image();
+imgL.src = "./images/imgL.png";
+imgL.id = "imgL";
+const imgE = new Image();
+imgE.src = "./images/imgE.png";
+imgE.id = "imgE";
+const imgF = new Image();
+imgF.src = "./images/imgF.png";
+imgF.id = "imgF";
+const imgG = new Image();
+imgG.src = "./images/imgG.png";
+imgG.id = "imgG";
+const imgI = new Image();
+imgI.src = "./images/imgI.png";
+imgI.id = "imgI";
 
 
- let imageLetters = [imgA.src, imgB.src, imgC.src, imgD.src, imgL.src];
+let imageLetters = [imgA.src, imgB.src, imgC.src, imgD.src, imgL.src];
 
- //images for last page of tutorial
- const img0 = new Image();
- img0.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473770754805871/image.png";
- img0.id = "img0";
- const img1 = new Image();
- img1.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473729189249186/image.png";
- img1.id = "img1";
- const img2 = new Image();
- img2.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141735326239424532/image.png";
- img2.id = "img2";
- const img3 = new Image();
- img3.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473537299845211/image.png";
- img3.id = "img3";
- const img4 = new Image();
- img4.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473476700557412/image.png";
- img4.id = "img4";
- const img5 = new Image();
- img5.src = "https://cdn.discordapp.com/attachments/757412788514717766/1141473405787443381/image.png";
- img5.id = "img5";
+//images for last page of tutorial
+const img0 = new Image();
+img0.src = "./images/img0.png";
+img0.id = "img0";
+const img1 = new Image();
+img1.src = "./images/img1.png";
+img1.id = "img1";
+const img2 = new Image();
+img2.src = "./images/img2.png";
+img2.id = "img2";
+const img3 = new Image();
+img3.src = "./images/img3.png";
+img3.id = "img3";
+const img4 = new Image();
+img4.src = "./images/img4.png";
+img4.id = "img4";
+const img5 = new Image();
+img5.src = "./images/img5.png";
+img5.id = "img5";
 
- let imageTutorial = [img0.src, img1.src, img2.src, img3.src, img4.src, img5.src];
+let imageTutorial = [img0.src, img1.src, img2.src, img3.src, img4.src, img5.src];
 
 
 let letters;
-// let letters = blueLetters;
 // this tracks where we are in the letters so the prompts cover them all
+// James and Andrew's OG blue model: https://teachablemachine.withgoogle.com/models/0_xhWMn4A/
+// James and Andrew's OG red model: https://teachablemachine.withgoogle.com/models/oalxd3LWt/
 let promptIndex = 0;
 let model;
-let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/0_xhWMn4A/'+ 'model.json');
-let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oalxd3LWt/'+ 'model.json');
+let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/AINQAXtTs/' + 'model.json');
+let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/7CoeRTZh8/' + 'model.json');
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
 // Load the model first
@@ -123,15 +121,15 @@ function preload() {
 function getModel() {
     model = document.getElementById("modelSelect").value;
     if (model == "blue") {
-      // blue
-      classifier = blueClassifier;
-      letters = blueLetters;
-      confidenceArray = blueConfidence;
+        // blue
+        classifier = blueClassifier;
+        letters = blueLetters;
+        confidenceArray = blueConfidence;
     } else {
-      // red
-      classifier = redClassifier;
-      letters = redLetters;
-      confidenceArray = redConfidence;
+        // red
+        classifier = redClassifier;
+        letters = redLetters;
+        confidenceArray = redConfidence;
     }
 
     for (i in confidenceArray) {
@@ -140,7 +138,7 @@ function getModel() {
 
     predictions = null;
     // reset any predictions
-  }
+}
 
 function pause_play() {
     textSize(120);
@@ -159,7 +157,7 @@ function pause_play() {
 // used to control the movement from different tutorial phases
 function tutorialNext() {
     console.log(tutorial_counter);
-    switch(tutorial_counter) {
+    switch (tutorial_counter) {
         case 1:
             //Model Input + Video Screen
             document.getElementById("tutorialPrompt1").style.visibility = "hidden";
@@ -250,9 +248,6 @@ function tutorialNext() {
             document.getElementById("letterPromptCaption").innerHTML = "When you're ready, take a look at a guide to the different parts of this application.";
             document.getElementById("imageDemo").style.visibility = "hidden";
             document.getElementById("ModeSign").style.visibility = "hidden";
-            // document.getElementById("speedBtn").disabled = false;
-            // document.getElementById("speedBtn").style.opacity = "1";
-            // document.getElementById("speedBtn").innerHTML = "🔓SpeedMode⏩";
             isPaused = true;
             tutorial_counter += 1;
             break;
@@ -287,8 +282,8 @@ function tutorialNext() {
             imageIndex++;
             tutorial_counter += 1;
             break;
-        case 12: 
-        // red mode
+        case 12:
+            // red mode
             document.getElementById("blueModeDescription").style.visibility = "hidden";
             document.getElementById("redModeDescription").style.visibility = "visible";
             document.getElementById("initialImage").src = imageTutorial[imageIndex];
@@ -335,19 +330,16 @@ function setup() {
     video = createCapture(VIDEO);
 
     // draw a white rectangle where the video will be
-    rect(0, 0, windowWidth/2, windowHeight/2);
+    rect(0, 0, windowWidth / 2, windowHeight / 2);
 
     // set video settings so image is flipped
-    video.size(windowWidth/2, windowHeight/2);
+    video.size(windowWidth / 2, windowHeight / 2);
     video.hide();
     flippedVideo = ml5.flipImage(video);
 
     // Change the frame rate as necessary depending on computer preformance
     frameRate(60);
     rectMode(CORNERS);
-    // textFont(loadFont('fonts/playfulKoala.ttf'));
-    // uncomment this after testing
-
 }
 
 function draw() {
@@ -385,31 +377,7 @@ function gotResult(error, results) {
     }
     // The results are in an array ordered by confidence
     predictions = results;
-    // label = results[0].label;
-    // if (label != "-" && !isPaused) {
-    //   progress += (1 / framesPerChar) * 100;
-    //   confidenceArray.push(label);
-    //   if (confidenceArray.length >= framesPerChar) {
-    //     word += highestOccurence(confidenceArray);
-    //     confidenceArray = [];
-    //     progress = 0;
-    //   }
-    // }
 }
-
-// function highestOccurence(arr){
-//     return arr.sort((a, b) =>
-//           arr.filter(x => x === a).length
-//         - arr.filter(x => x === b).length
-//     ).pop();
-// }
-
-// function deleteChar() {
-//   top_character = top_character.slice(0, -1);
-//   progress = 0;
-// }
-
-
 
 function tutorial() {
     console.log("Ran the tutorial.");
@@ -422,8 +390,6 @@ function statistics() {
     }
 
     // draw a box to hold the predictions
-    // noFill();
-    // rect(windowWidth, 0, windowWidth * 0.5, windowHeight * 0.5 )
     textAlign(CENTER);
     let top_character_size = 160;
     textSize(top_character_size);
@@ -435,8 +401,8 @@ function statistics() {
         stroke(0, 0, 0);
         if (progress) {
             noFill();
-            stroke(lerpColor(color(255,0,0), color(0,255,0), (progress / 100.0)));
-            arc(width * 0.75, height * 0.33, top_character_size*  1.5, top_character_size * 1.5, 0, 2 * PI * (progress / 100.0))
+            stroke(lerpColor(color(255, 0, 0), color(0, 255, 0), (progress / 100.0)));
+            arc(width * 0.75, height * 0.33, top_character_size * 1.5, top_character_size * 1.5, 0, 2 * PI * (progress / 100.0))
         }
         strokeWeight(1);
         stroke(0, 0, 0);
@@ -455,7 +421,7 @@ function statistics() {
 
         if (entry.label != '-') {
             // Interpolate from red to green using confidence
-            fill(lerpColor(color(255,0,0), color(0,255,0), entry.confidence));
+            fill(lerpColor(color(255, 0, 0), color(0, 255, 0), entry.confidence));
             // Draw the rectangle
             rect(startingX,
                 startingY - (entry.confidence * maxBarHeight),
@@ -464,10 +430,10 @@ function statistics() {
                 5, 5, 5, 5
             )
             // Write the labels under their respective bars
-            fill(0,0,0);
+            fill(0, 0, 0);
             textSize(30);
             textAlign(CENTER);
-            text(entry.label,startingX + barWidth / 2, startingY + 30);
+            text(entry.label, startingX + barWidth / 2, startingY + 30);
         }
 
         // keep track of the past framesPerChar confidences
@@ -502,7 +468,7 @@ function statistics() {
         // find char with highest avg ( excluding the background )
         for (letter in confidenceArray) {
             // && letter != '-'
-            if (average(confidenceArray[letter]) > highest_avg ) {
+            if (average(confidenceArray[letter]) > highest_avg) {
                 highest_avg = average(confidenceArray[letter]);
                 top_character = letter;
             }
@@ -512,7 +478,7 @@ function statistics() {
 
 function switchModel() {
     // function activates when the user selects a model
-    
+
     // Am I waiting for them to click red?
     if (tutorial_counter == 7) {
         // indicate that the user can proceed
@@ -528,8 +494,6 @@ function switchModel() {
 }
 function confirmLetter() {
     // confirm the letter
-    //console.log(`confirming letter ${top_character}`);
-    /////////////////////////////////////////////////////////////////////////////////////////
     if (top_character === letters[promptIndex]) {
         // show the correct icon
 
@@ -538,9 +502,6 @@ function confirmLetter() {
         // entry needs to be there since it's classifiable and it used in the
         // statistics function
         if (promptIndex >= letters.length - 1) {
-
-            //
-
             tutorialNext();
             // no more prompts to give
             if (tutorial_counter > 10) {
@@ -548,8 +509,6 @@ function confirmLetter() {
             } else {
                 promptIndex = 0;
             }
-
-
         } else {
             document.getElementById("letterPrompt").innerHTML = `Can you sign a <strong>'${letters[promptIndex]}'</strong>?<br>`
             document.getElementById("signImage").src = imageLetters[promptIndex];
