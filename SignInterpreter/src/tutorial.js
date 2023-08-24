@@ -14,7 +14,7 @@ let isPaused = true;
 let framesPerChar = 10;
 // Video
 let video;
-let tutorial_counter = 7;
+let tutorial_counter = 1;
 let flippedVideo;
 // To store the classification
 let label = "";
