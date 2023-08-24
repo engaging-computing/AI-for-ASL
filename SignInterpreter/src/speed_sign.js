@@ -13,7 +13,6 @@ let textTimer = 2000;
 // Video
 let video;
 let flippedVideo;
-// I'm just arbitrarilly setting the first character to 'a'
 let top_character = '-';
 let randomCharacters = [];
 
@@ -21,21 +20,21 @@ let predictions;
 // // set's of letters for each model
 let blueLetters = ['a', 'b', 'c', 'd', 'l', '-'];
 let blueConfidence = {
-    'a': [],
-    'b': [],
-    'c': [],
-    'd': [],
-    'l': [],
-    '-': []
+	'a': [],
+	'b': [],
+	'c': [],
+	'd': [],
+	'l': [],
+	'-': []
 };
 let redLetters = ['d', 'e', 'f', 'g', 'i', '-'];
 let redConfidence = {
-    'd': [],
-    'e': [],
-    'f': [],
-    'g': [],
-    'i': [],
-    '-': []
+	'd': [],
+	'e': [],
+	'f': [],
+	'g': [],
+	'i': [],
+	'-': []
 };
 
 let modelNum;
@@ -46,8 +45,8 @@ let model;
 let correctModel = "";
 let isModelCorrect = false;
 
-let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/0_xhWMn4A/'+ 'model.json');
-let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oalxd3LWt/'+ 'model.json');
+let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/0_xhWMn4A/' + 'model.json');
+let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oalxd3LWt/' + 'model.json');
 
 let score = 0;
 let incorrectModelAttempts = 0;
@@ -57,74 +56,72 @@ const average = array => array.reduce((a, b) => a + b) / array.length;
 
 // Load the model first
 function preload() {
-    getModel();
+	getModel();
 	document.getElementById("wordPrompt").innerHTML = `Select the model that contains the letters in <strong>'${randomCharacters.join("")}'</strong>?<br>`
 	document.getElementById("modelSelect").selectedIndex = 0;
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight / 2);
-    background('rgb(255, 235, 145)')
-    koalafont = loadFont("fonts/playfulKoala.otf");
-    textFont(koalafont);
+	createCanvas(windowWidth, windowHeight / 2);
+	background('rgb(255, 235, 145)')
+	koalafont = loadFont("fonts/playfulKoala.otf");
+	textFont(koalafont);
 
-    // Create the video
-    video = createCapture(VIDEO);
+	// Create the video
+	video = createCapture(VIDEO);
 
-    // draw a white rectangle where the video will be
-    rect(0, 0, windowWidth/2, windowHeight/2);
+	// draw a white rectangle where the video will be
+	rect(0, 0, windowWidth / 2, windowHeight / 2);
 
-    // set video settings so image is flipped
-    video.size(windowWidth/2, windowHeight/2);
-    video.hide();
-    flippedVideo = ml5.flipImage(video);
+	// set video settings so image is flipped
+	video.size(windowWidth / 2, windowHeight / 2);
+	video.hide();
+	flippedVideo = ml5.flipImage(video);
 
-    // Change the frame rate as necessary depending on computer preformance
-    frameRate(60);
-    rectMode(CORNERS);
-    // textFont(loadFont('fonts/playfulKoala.ttf'));
-    // uncomment this after testing
+	// Change the frame rate as necessary depending on computer preformance
+	frameRate(60);
+	rectMode(CORNERS);
 	startGame();
 }
 
 function draw() {
 	// Play the game
-    if (isPaused) {
-        return;
-    }
+	if (isPaused) {
+		return;
+	}
 	if (isModelCorrect) {
 		isPaused = false;
 		isModelCorrect = false;
 	}
-    // draw the background
-    background('rgb(255, 235, 145)');
+	// draw the background
+	background('rgb(255, 235, 145)');
 
-    classifyVideo();
+	classifyVideo();
 
-    // Draw the video
-    image(flippedVideo, 0, 0);
+	// Draw the video
+	image(flippedVideo, 0, 0);
 
-    // draw the live statistics
-    statistics();
+	// draw the live statistics
+	statistics();
 }
 
 // Get a prediction for the current video frame
 function classifyVideo() {
-    flippedVideo = ml5.flipImage(video);
-    // classify is causing the program to pause for a couple seconds
-    classifier.classify(flippedVideo, gotResult);
-    flippedVideo.remove();
+	flippedVideo = ml5.flipImage(video);
+	// classify is causing the program to pause for a couple seconds
+	classifier.classify(flippedVideo, gotResult);
+	flippedVideo.remove();
 }
 
 // When we get a result
 function gotResult(error, results) {
-    // If there is an error
-    if (error) {
-        console.error(error);
-        return;
-    }
-    // The results are in an array ordered by confidence
-    predictions = results;
+	// If there is an error
+	if (error) {
+		console.error(error);
+		return;
+	}
+	// The results are in an array ordered by confidence
+	predictions = results;
 }
 
 
@@ -134,14 +131,12 @@ function getModel() {
 		// blue
 		classifier = blueClassifier;
 		correctModel = "blue";
-		//letters = JSON.parse(JSON.stringify(blueLetters));
 		modelNum = 0;
 		confidenceArray = blueConfidence;
 	} else {
 		// red
 		classifier = redClassifier;
 		correctModel = "red";
-		//letters = JSON.parse(JSON.stringify(redLetters));
 		modelNum = 1;
 		confidenceArray = redConfidence;
 	}
@@ -156,30 +151,30 @@ function getModel() {
 }
 
 function statistics() {
-    // if the model has not made a prediction, exit the function
-    if (!predictions) {
-        return;
-    }
+	// if the model has not made a prediction, exit the function
+	if (!predictions) {
+		return;
+	}
 	if (isPaused) {
-        return;
-    }
-    textAlign(CENTER);
-    let top_character_size = 160;
-    textSize(top_character_size);
+		return;
+	}
+	textAlign(CENTER);
+	let top_character_size = 160;
+	textSize(top_character_size);
 
-    // only draw the character if the bg is not detected
-    if (top_character != '-') {
-        text(top_character, width * 0.75, height * 0.33 + (top_character_size * 0.25));
-        strokeWeight(12);
-        stroke(0, 0, 0);
-        if (progress) {
-            noFill();
-            stroke(lerpColor(color(255,0,0), color(0,255,0), (progress / 100.0)));
-            arc(width * 0.75, height * 0.33, top_character_size*  1.5, top_character_size * 1.5, 0, 2 * PI * (progress / 100.0))
-        }
-        strokeWeight(1);
-        stroke(0, 0, 0);
-    }
+	// only draw the character if the bg is not detected
+	if (top_character != '-') {
+		text(top_character, width * 0.75, height * 0.33 + (top_character_size * 0.25));
+		strokeWeight(12);
+		stroke(0, 0, 0);
+		if (progress) {
+			noFill();
+			stroke(lerpColor(color(255, 0, 0), color(0, 255, 0), (progress / 100.0)));
+			arc(width * 0.75, height * 0.33, top_character_size * 1.5, top_character_size * 1.5, 0, 2 * PI * (progress / 100.0))
+		}
+		strokeWeight(1);
+		stroke(0, 0, 0);
+	}
 
 	for (let i = 0; i < letters[modelNum].length; i++) {
 		// draw the bar and letter if not background
@@ -193,7 +188,7 @@ function statistics() {
 		startingY = windowHeight * 0.45;
 		if (entry && entry.label != '-') {
 			// Interpolate from red to green using confidence
-			fill(lerpColor(color(255,0,0), color(0,255,0), entry.confidence));
+			fill(lerpColor(color(255, 0, 0), color(0, 255, 0), entry.confidence));
 			// Draw the rectangle
 			rect(startingX,
 				startingY - (entry.confidence * maxBarHeight),
@@ -202,10 +197,10 @@ function statistics() {
 				5, 5, 5, 5
 			)
 			// Write the labels under their respective bars
-			fill(0,0,0);
+			fill(0, 0, 0);
 			textSize(30);
 			textAlign(CENTER);
-			text(entry.label,startingX + barWidth / 2, startingY + 30);
+			text(entry.label, startingX + barWidth / 2, startingY + 30);
 		}
 		// keep track of the past framesPerChar confidences
 		confidenceArray[letters[modelNum][i]].push(entry.confidence)
@@ -240,7 +235,7 @@ function statistics() {
 		// find char with highest avg ( excluding the background )
 		for (letter in confidenceArray) {
 			// && letter != '-'
-			if (average(confidenceArray[letter]) > highest_avg ) {
+			if (average(confidenceArray[letter]) > highest_avg) {
 				highest_avg = average(confidenceArray[letter]);
 				top_character = letter;
 			}
@@ -281,7 +276,7 @@ function confirmLetter() {
 	setTimeout(() => {
 		document.getElementById("extraPrompt").style.visibility = "hidden";
 
-	  }, textTimer);
+	}, textTimer);
 
 
 	progress = 0;
@@ -322,7 +317,7 @@ function checkModel() {
 		document.getElementById("extraPrompt").innerHTML = 'Correct!';
 		isModelCorrect = true;
 		isPaused = false;
-	} else if (modelSelector.value == correctModel){
+	} else if (modelSelector.value == correctModel) {
 		document.getElementById("wordPrompt").innerHTML = `Now sign the letter: <strong>'${randomCharacters[promptIndex]}'</strong><br>`;
 		document.getElementById("extraPrompt").style.color = '#6FCD3D';
 		document.getElementById("extraPrompt").innerHTML = 'Correct!';
@@ -340,10 +335,10 @@ function checkModel() {
 	setTimeout(() => {
 		document.getElementById("extraPrompt").style.visibility = "hidden";
 
-	  }, textTimer);
+	}, textTimer);
 }
 
-function updateTimer() { 
+function updateTimer() {
 	if (gameTimer) {
 		gameTimer -= 1;
 		document.getElementById("roundTimer").innerHTML = `Time Left: ${gameTimer}`
@@ -385,21 +380,19 @@ function updateStartTime() {
 
 function endGame() {
 	addUser();
-	// Uncomment when you want to export users. Or run in console
-	//exportUsers();
 	window.location = 'index.html';
 }
 
 /**
-     * Add new users to locally stored JSON object
-    **/
+	 * Add new users to locally stored JSON object
+	**/
 function addUser() {
 	let userData = localStorage.getItem('userData');
 	let firstName = localStorage.getItem('fname');
 	let grade = localStorage.getItem('grade');
 	var date = new Date();
 	var formattedDate = date.getDate() + "/"
-		+ (date.getMonth() + 1)  + "/"
+		+ (date.getMonth() + 1) + "/"
 		+ date.getFullYear() + " - "
 		+ date.getHours() + ":"
 		+ date.getMinutes() + ":"
@@ -408,7 +401,7 @@ function addUser() {
 	if (userData) {
 		userData = JSON.parse(userData);
 	} else {
-		userData = {users: []};
+		userData = { users: [] };
 	}
 	userData.users.push({
 		firstName: firstName,
