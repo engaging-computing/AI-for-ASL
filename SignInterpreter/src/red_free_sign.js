@@ -48,8 +48,8 @@ let letters;
 // this tracks where we are in the letters so the prompts cover them all
 let promptIndex = 0;
 let model;
-let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/0_xhWMn4A/' + 'model.json');
-let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oalxd3LWt/' + 'model.json');
+let blueClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/AINQAXtTs/' + 'model.json');
+let redClassifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/7CoeRTZh8/' + 'model.json');
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
 
