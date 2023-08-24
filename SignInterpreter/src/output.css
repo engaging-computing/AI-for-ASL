@@ -569,6 +569,10 @@ video {
   object-position: right;
 }
 
+.object-center {
+  object-position: center;
+}
+
 .page{
   overflow: hidden;
 }
@@ -1353,6 +1357,10 @@ video {
   transition: 1s opacity;
   text-align: center;
   font-size: 32px;
+}
+
+.text-right{
+  text-align: right;
 }
 
 .italic {
